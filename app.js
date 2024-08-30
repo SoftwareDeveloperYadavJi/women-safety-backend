@@ -4,9 +4,11 @@ const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
 const morgan = require('morgan');
 const userRoutes = require('./routes/userRoutes');
+const connectDB = require('./config/db');
 
 // Load environment variables from .env file
 dotenv.config();
+connectDB();
 
 // Initialize Express app
 const app = express();
@@ -23,6 +25,9 @@ app.get('/', (req, res) => {
 
 // Set up your routes
 app.use('/api/users', userRoutes);
+
+
+
 
 // Start the server
 const PORT = process.env.PORT || 5000;
